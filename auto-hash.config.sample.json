@@ -1,0 +1,11 @@
+{
+  "files": [
+    {
+      "file": "src/index.js",
+      "name": "index"
+    }
+  ],
+  "output": {
+    "file": "src/auto-hash.js"
+  }
+}

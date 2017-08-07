@@ -1,0 +1,12 @@
+{
+  "files": [
+    {
+      "file": "test/index.js",
+      "name": "testIndex"
+    }
+  ],
+  "output": {
+    "file": "test/test-hash.js"
+  },
+  "len": 8
+}

@@ -1,68 +1,67 @@
 # auto-hash
 
 [![npm](https://img.shields.io/npm/v/auto-hash.svg?style=flat-square)](https://www.npmjs.com/package/auto-hash)
-[![README_CHINESE](https://img.shields.io/badge/README-%E4%B8%AD%E6%96%87-blue.svg)](README.zh_CN.md)
+[![README_EN](https://img.shields.io/badge/README-EN-blue.svg)](README.md)
 
-
-automatically create hash info for files
+自动计算文件 hash 值
 
 ## Features
 
-- automatically generate MD5 for all files in list
-- output all heshes as an Object to the target file
+- 自动计算列表中文件的 MD5 值
+- 输出结果到指定文件
 
 ## Install
 
 ```
 npm install auto-hash
 ```
-or
+或者
 ```
 yarn add auto-hash
 ```
 
 ## Usage
 
-### run as Node.js script directly
+### 作为 Node.js 脚本直接调用
 
 ```js
 node auto-hash/index.js -c auto-hash.config.json
-// add -c or -config to set configuration file
+// 指定配置文件的参数可以是 -c 或者 -config
 ```
 
-### import autoHash as a module
+### 作为模块引入调用
 
 ```js
 const autoHash = require('auto-hash');
 autoHash({
   config: './auto-hash.config.json',
 });
-// add 'c' or 'config' to set configuration file
+// 指定配置文件的参数名可以是 c 或者 config
 ```
 
-### output example
+### 输出样例
 
 ```js
 module.exports = { testIndex: '5745abcc' };
 ```
 
-## Configuration example
+## 配置说明
 
-configuration file is in `.json`
+配置文件格式为 `.json`
 
 ```
 {
-  // 'files' is the list that contains all files to be hashing
+  // files 是需要进行 hash 计算的文件列表
   "files": [
     {
-      "file": "src/index.js", // (required) set file path in 'file' property
-      "name": "index" // (optional) set 'name' property to change the property of hash in output object, default to filename
+      "file": "src/index.js", // file 属性设置相对位置(必须)
+      "name": "index" // name 属性设置输出对象中对应的属性名（默认文件名，可选）
     }
   ],
   "output": {
-    "file": "src/auto-hash.js" // (required) path of output file
+    "file": "src/auto-hash.js" // 输出文件（必须）
   },
-  "len": 10 // the length of hash string to be used, default to full string.
+  "len": 10 // hash 取值长度，默认全部（可选）
 }
 ```
 

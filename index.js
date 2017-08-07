@@ -22,6 +22,12 @@ function genHash(argv) {
   const configFilePath = argv.c || argv.config || './auto-hash.config.json';
   const configFile = path.resolve(__dirname, configFilePath);
   config = JSON.parse(fs.readFileSync(configFile));
+  if (!(Array.isArray(config.files) && config.files.length)) {
+    throw new Error('Missing files list');
+  }
+  if (!(config.output && config.output.file)) {
+    throw new Error('Missing output file path');
+  }
   const hashes = {};
   config.files.forEach(fileObj => {
     if (typeof fileObj === 'object') {

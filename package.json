@@ -7,7 +7,7 @@
   },
   "name": "auto-hash",
   "description": "automatically create hash info for files",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "main": "index.js",
   "directories": {
     "test": "test"
@@ -33,7 +33,9 @@
     "autohash": "./index.js"
   },
   "jest": {
-    "collectCoverageFrom" : ["index.js"],
+    "collectCoverageFrom": [
+      "index.js"
+    ],
     "coverageDirectory": "coverage"
   }
 }

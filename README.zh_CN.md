@@ -38,6 +38,19 @@ autoHash({
   config: './auto-hash.config.json',
 });
 // 指定配置文件的参数名可以是 c 或者 config
+// 或者你也可以直接传递 config 配置对象
+autoHash({
+  files: [{
+    file: "test/index.js",
+    name: "testIndex"
+  }],
+  output: {
+    file: "test/test-hash.js"
+  },
+  len: 8,
+  rename: false,
+  copy: true
+});
 ```
 
 ### 输出样例

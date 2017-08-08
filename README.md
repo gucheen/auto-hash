@@ -39,6 +39,19 @@ autoHash({
   config: './auto-hash.config.json',
 });
 // add 'c' or 'config' to set configuration file
+// or you can pass configuration directly
+autoHash({
+  files: [{
+    file: "test/index.js",
+    name: "testIndex"
+  }],
+  output: {
+    file: "test/test-hash.js"
+  },
+  len: 8,
+  rename: false,
+  copy: true
+});
 ```
 
 ### output example

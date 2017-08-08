@@ -13,7 +13,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "repository": {
     "type": "git",
@@ -28,5 +28,12 @@
   "bugs": {
     "url": "https://github.com/gucheen/auto-hash/issues"
   },
-  "homepage": "https://github.com/gucheen/auto-hash#readme"
+  "homepage": "https://github.com/gucheen/auto-hash#readme",
+  "bin": {
+    "autohash": "./index.js"
+  },
+  "jest": {
+    "collectCoverageFrom" : ["index.js"],
+    "coverageDirectory": "coverage"
+  }
 }

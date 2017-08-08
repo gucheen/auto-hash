@@ -27,7 +27,7 @@ yarn add auto-hash
 ### run as Node.js script directly
 
 ```js
-node auto-hash/index.js -c auto-hash.config.json
+autohash -c auto-hash.config.json
 // add -c or -config to set configuration file
 ```
 

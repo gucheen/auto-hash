@@ -26,7 +26,7 @@ yarn add auto-hash
 ### 作为 Node.js 脚本直接调用
 
 ```js
-node auto-hash/index.js -c auto-hash.config.json
+autohash -c auto-hash.config.json
 // 指定配置文件的参数可以是 -c 或者 -config
 ```
 

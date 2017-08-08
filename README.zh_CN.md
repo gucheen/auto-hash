@@ -9,6 +9,7 @@
 
 - 自动计算列表中文件的 MD5 值
 - 输出结果到指定文件
+- 附加 hash 到文件名中 originalFilename.hash.ext（重命名原文件或者创建一个新的副本）
 
 ## Install
 
@@ -61,7 +62,9 @@ module.exports = { testIndex: '5745abcc' };
   "output": {
     "file": "src/auto-hash.js" // 输出文件（必须）
   },
-  "len": 10 // hash 取值长度，默认全部（可选）
+  "len": 10, // hash 取值长度，默认全部（可选）
+  "rename": false, // 重命名原文件，把 hash 附加到文件名中 originalFilename.hash.ext (可选，默认为 false)
+  "copy": true // 创建一个原文件的拷贝，把 hash 附加到文件名中 originalFilename.hash.ext (可选，默认为 false)
 }
 ```
 

@@ -1,11 +1,14 @@
 {
   "files": [
     {
-      "file": "src/index.js",
-      "name": "index"
+      "file": "test/index.js",
+      "name": "testIndex"
     }
   ],
   "output": {
-    "file": "src/auto-hash.js"
-  }
+    "file": "test/test-hash.js"
+  },
+  "len": 8,
+  "rename": false,
+  "copy": false
 }

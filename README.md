@@ -10,6 +10,7 @@ automatically create hash info for files
 
 - automatically generate MD5 for all files in list
 - output all heshes as an Object to the target file
+- add hash value to filename originalFilename.hash.ext（rename or create a copy of the original file）
 
 ## Install
 
@@ -62,7 +63,9 @@ configuration file is in `.json`
   "output": {
     "file": "src/auto-hash.js" // (required) path of output file
   },
-  "len": 10 // the length of hash string to be used, default to full string.
+  "len": 10, // (optional) the length of hash string to be used, default to full string.
+  "rename": false, // (optional, false) rename the original file to originalFilename.hash.ext (可选，默认为 false)
+  "copy": true // (optional, false) create a copy in originalFilename.hash.ext
 }
 ```
 

@@ -15,6 +15,28 @@ function fileMD5(buffer) {
   return hash;
 }
 
+function cpFilePath(filePath, hash) {
+  const pathObj = path.parse(filePath);
+  if (pathObj.base) {
+    const base = pathObj.base.split('.');
+    base.splice(-1, 0, hash);
+    pathObj.base = base.join('.');
+  } else {
+    pathObj.name += `.${hash}`;
+  }
+  return path.format(pathObj);
+}
+
+function renameFile(filePath, hash) {
+  const newPath = cpFilePath(filePath, hash);
+  fs.renameSync(filePath, newPath);
+}
+
+function copyFile(filePath, hash) {
+  const newPath = cpFilePath(filePath, hash);
+  fs.createReadStream(filePath).pipe(fs.createWriteStream(newPath));
+}
+
 function genHash(argv) {
   if (require.main === module) {
     argv = require('minimist')(process.argv.slice(2));
@@ -30,21 +52,32 @@ function genHash(argv) {
   }
   const hashes = {};
   config.files.forEach(fileObj => {
+    let filePath;
+    let fileHash;
     if (typeof fileObj === 'object') {
       if (!fileObj.file) {
         return;
       }
-      const file = fs.readFileSync(fileObj.file);
+      filePath = fileObj.file;
+      const file = fs.readFileSync(filePath);
+      fileHash = fileMD5(file);
       if (fileObj.name) {
-        hashes[fileObj.name] = fileMD5(file);
+        hashes[fileObj.name] = fileHash;
       } else {
-        const fileInfo = path.parse(fileObj.file);
-        hashes[fileInfo.name] = fileMD5(file);
+        const fileInfo = path.parse(filePath);
+        hashes[fileInfo.name] = fileHash;
       }
     } else if (typeof fileObj === 'string') {
-      const fileInfo = path.parse(fileObj);
-      const file = fs.readFileSync(fileObj);
-      hashes[fileInfo.name] = fileMD5(file);
+      filePath = fileObj;
+      const file = fs.readFileSync(filePath);
+      fileHash = fileMD5(file);
+      const fileInfo = path.parse(filePath);
+      hashes[fileInfo.name] = fileHash;
+    }
+    if (config.rename) {
+      renameFile(filePath, fileHash);
+    } else if (config.copy) {
+      copyFile(filePath, fileHash);
     }
   });
   const fileContent = `module.exports = ${util.inspect(hashes)};`;

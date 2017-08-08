@@ -2,6 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/auto-hash.svg?style=flat-square)](https://www.npmjs.com/package/auto-hash)
 [![README_EN](https://img.shields.io/badge/README-EN-blue.svg)](README.md)
+[![Coverage Status](https://coveralls.io/repos/github/gucheen/auto-hash/badge.svg?branch=master)](https://coveralls.io/github/gucheen/auto-hash?branch=master)
 
 自动计算文件 hash 值
 

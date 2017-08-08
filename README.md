@@ -2,6 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/auto-hash.svg?style=flat-square)](https://www.npmjs.com/package/auto-hash)
 [![README_CHINESE](https://img.shields.io/badge/README-%E4%B8%AD%E6%96%87-blue.svg)](README.zh_CN.md)
+[![Coverage Status](https://coveralls.io/repos/github/gucheen/auto-hash/badge.svg?branch=master)](https://coveralls.io/github/gucheen/auto-hash?branch=master)
 
 
 automatically create hash info for files

@@ -1,0 +1,10 @@
+{
+  "files": [
+    "test/index-2.css"
+  ],
+  "output": {
+    "file": "test/test-hash-2.js"
+  },
+  "rename": false,
+  "copy": true
+}

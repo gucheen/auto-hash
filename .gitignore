@@ -98,3 +98,7 @@ typings/
 .history
 
 # End of https://www.gitignore.io/api/node,macos,visualstudiocode
+
+test/*
+!test/index-2.css
+!test/index.js

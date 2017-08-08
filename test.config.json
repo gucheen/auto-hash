@@ -8,5 +8,7 @@
   "output": {
     "file": "test/test-hash.js"
   },
-  "len": 8
+  "len": 8,
+  "rename": false,
+  "copy": true
 }

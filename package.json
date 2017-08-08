@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/gucheen/auto-hash#readme",
   "bin": {
-    "autohash": "./index.js"
+    "autohash": "./bin/autohash.js"
   },
   "jest": {
     "collectCoverageFrom": [

@@ -3,7 +3,7 @@ const path = require('path');
 const genHash = require('./');
 
 genHash({
-  config: './test.config.json',
+  c: './test.config.json',
 });
 
 const hashFile = require('./test/test-hash.js');
@@ -42,4 +42,19 @@ test('contain all file hash value', () => {
 test('create a copy of original file with hash in filename', () => {
   const fileCopy = fs.statSync(path.relative(__dirname, `./test/index-2.${hashFile2['index-2']}.css`));
   expect(fileCopy).toBeDefined;
+});
+
+test('passing config object directly', () => {
+  genHash({
+    files: [{
+      file: "test/index.js",
+      name: "testIndex"
+    }],
+    output: {
+      file: "test/test-hash.js"
+    },
+    len: 8,
+    rename: false,
+    copy: true
+  });
 });

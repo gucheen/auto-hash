@@ -37,13 +37,20 @@ function copyFile(filePath, hash) {
   fs.createReadStream(filePath).pipe(fs.createWriteStream(newPath));
 }
 
-function genHash(argv) {
-  if (require.main === module) {
-    argv = require('minimist')(process.argv.slice(2));
-  }
-  const configFilePath = argv.c || argv.config || './auto-hash.config.json';
-  const configFile = path.resolve(__dirname, configFilePath);
+function loadConfig(configPath) {
+  const configFile = path.resolve(__dirname, configPath);
   config = JSON.parse(fs.readFileSync(configFile));
+}
+
+function genHash(argv) {
+  if (argv.c || argv.config) {
+    const configFilePath = argv.c || argv.config;
+    loadConfig(configFilePath);
+  } else if (Array.isArray(argv.files)) {
+    config = argv;
+  } else {
+    loadConfig('./auto-hash.config.json');
+  }
   if (!(Array.isArray(config.files) && config.files.length)) {
     throw new Error('Missing files list');
   }
@@ -85,7 +92,3 @@ function genHash(argv) {
 }
 
 module.exports = genHash;
-
-if (require.main === module) {
-  genHash();
-}

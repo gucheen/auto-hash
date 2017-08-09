@@ -1,1 +1,0 @@
-module.exports = { testIndex: '5745abcc' };

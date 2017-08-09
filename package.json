@@ -13,7 +13,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "jest --coverage"
+    "test": "jest test/test.spec.js --coverage"
   },
   "repository": {
     "type": "git",

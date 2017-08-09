@@ -3,6 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const util = require('util');
 
+const workingDir = process.cwd();
 let config = {};
 
 function fileMD5(buffer) {
@@ -38,8 +39,7 @@ function copyFile(filePath, hash) {
 }
 
 function loadConfig(configPath) {
-  const configFile = path.resolve(__dirname, configPath);
-  config = JSON.parse(fs.readFileSync(configFile));
+  config = JSON.parse(fs.readFileSync(path.resolve(workingDir, configPath)));
 }
 
 function genHash(argv) {
@@ -65,7 +65,7 @@ function genHash(argv) {
       if (!fileObj.file) {
         return;
       }
-      filePath = fileObj.file;
+      filePath = path.resolve(workingDir, fileObj.file);
       const file = fs.readFileSync(filePath);
       fileHash = fileMD5(file);
       if (fileObj.name) {
@@ -75,7 +75,7 @@ function genHash(argv) {
         hashes[fileInfo.name] = fileHash;
       }
     } else if (typeof fileObj === 'string') {
-      filePath = fileObj;
+      filePath = path.resolve(workingDir, fileObj);
       const file = fs.readFileSync(filePath);
       fileHash = fileMD5(file);
       const fileInfo = path.parse(filePath);

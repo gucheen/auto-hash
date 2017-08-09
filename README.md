@@ -61,6 +61,10 @@ autoHash({
 module.exports = { testIndex: '5745abcc' };
 ```
 
+### About file path
+
+** ! All file paths shoud be relative to working directory **
+
 ## Configuration example
 
 configuration file is in `.json`

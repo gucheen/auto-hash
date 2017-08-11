@@ -89,6 +89,7 @@ function genHash(argv) {
   });
   const fileContent = `module.exports = ${util.inspect(hashes)};`;
   fs.writeFileSync(config.output.file, fileContent);
+  return hashes;
 }
 
 module.exports = genHash;

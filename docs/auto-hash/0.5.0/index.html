@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Home</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Home</h1>
+
+    
+
+
+
+    
+
+
+    <h3>auto-hash 0.5.0</h3>
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+    <section>
+        <article><h1>auto-hash</h1><p><a href="https://www.npmjs.com/package/auto-hash"><img src="https://img.shields.io/npm/v/auto-hash.svg?style=flat-square" alt="npm"></a>
+<a href="README.zh_CN.md"><img src="https://img.shields.io/badge/README-%E4%B8%AD%E6%96%87-blue.svg" alt="README_CHINESE"></a>
+<a href="https://coveralls.io/github/gucheen/auto-hash?branch=master"><img src="https://coveralls.io/repos/github/gucheen/auto-hash/badge.svg?branch=master" alt="Coverage Status"></a></p>
+<p>automatically create hash info for files</p>
+<h2>Features</h2><ul>
+<li>automatically generate MD5 for all files in list</li>
+<li>output all heshes as an Object to the target file</li>
+<li>add hash value to filename originalFilename.hash.ext（rename or create a copy of the original file）</li>
+</ul>
+<h2>Install</h2><pre class="prettyprint source"><code>npm install auto-hash</code></pre><p>or</p>
+<pre class="prettyprint source"><code>yarn add auto-hash</code></pre><h2>Usage</h2><h3>run as Node.js script directly</h3><pre class="prettyprint source lang-js"><code>autohash -c auto-hash.config.json
+// add -c or -config to set configuration file</code></pre><h3>import autoHash as a module</h3><pre class="prettyprint source lang-js"><code>const autoHash = require('auto-hash');
+autoHash({
+  config: './auto-hash.config.json',
+});
+// add 'c' or 'config' to set configuration file
+// or you can pass configuration directly
+autoHash({
+  files: [{
+    file: &quot;test/index.js&quot;,
+    name: &quot;testIndex&quot;
+  }],
+  output: {
+    file: &quot;test/test-hash.js&quot;
+  },
+  len: 8,
+  rename: false,
+  copy: true
+});</code></pre><h3>output example</h3><ul>
+<li><p>return as an object when call <code>autoHash()</code></p>
+<pre class="prettyprint source lang-js"><code>{ testIndex: '5745abcc' }</code></pre></li>
+<li><p>output as a file when <code>output.file</code> is provided (the object will still be returned in <code>autoHash()</code>)</p>
+<pre class="prettyprint source lang-js"><code>module.exports = { testIndex: '5745abcc' };</code></pre></li>
+</ul>
+<h2>About file path</h2><p><strong>! All file paths shoud be relative to working directory</strong></p>
+<h2>Configuration example</h2><p>configuration file is in <code>.json</code></p>
+<pre class="prettyprint source"><code>{
+  // 'files' is the list that contains all files to be hashing
+  &quot;files&quot;: [
+    {
+      &quot;file&quot;: &quot;src/index.js&quot;, // (required) set file path in 'file' property
+      &quot;name&quot;: &quot;index&quot; // (optional) set 'name' property to change the property of hash in output object, default to filename
+    }
+  ],
+  &quot;output&quot;: {
+    &quot;file&quot;: &quot;src/auto-hash.js&quot; // (optional) path of output file
+  },
+  &quot;len&quot;: 10, // (optional) the length of hash string to be used, default to full string.
+  &quot;rename&quot;: false, // (optional, false) rename the original file to originalFilename.hash.ext
+  &quot;copy&quot;: true // (optional, false) create a copy in originalFilename.hash.ext
+}</code></pre><h2>LICENSE</h2><p>MIT License</p>
+<p>Copyright (c) 2017 Cheng Gu</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the &quot;Software&quot;), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</p></article>
+    </section>
+
+
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-autoHash.html">autoHash</a></li></ul><h3>Global</h3><ul><li><a href="global.html#autoHash">autoHash</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a> on Fri Aug 11 2017 17:29:12 GMT+0800 (CST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

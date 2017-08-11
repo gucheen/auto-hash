@@ -52,10 +52,7 @@ function genHash(argv) {
     loadConfig('./auto-hash.config.json');
   }
   if (!(Array.isArray(config.files) && config.files.length)) {
-    throw new Error('Missing files list');
-  }
-  if (!(config.output && config.output.file)) {
-    throw new Error('Missing output file path');
+    throw new Error('Missing file list');
   }
   const hashes = {};
   config.files.forEach(fileObj => {
@@ -87,8 +84,10 @@ function genHash(argv) {
       copyFile(filePath, fileHash);
     }
   });
-  const fileContent = `module.exports = ${util.inspect(hashes)};`;
-  fs.writeFileSync(config.output.file, fileContent);
+  if (config.output && config.output.file) {
+    const fileContent = `module.exports = ${util.inspect(hashes)};`;
+    fs.writeFileSync(config.output.file, fileContent);
+  }
   return hashes;
 }
 

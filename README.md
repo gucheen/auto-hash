@@ -57,6 +57,12 @@ autoHash({
 
 ### output example
 
+- return as an object when call `autoHash()`
+```js
+{ testIndex: '5745abcc' }
+```
+
+- output as a file when `output.file` is provided (the object will still be returned in `autoHash()`)
 ```js
 module.exports = { testIndex: '5745abcc' };
 ```
@@ -79,7 +85,7 @@ configuration file is in `.json`
     }
   ],
   "output": {
-    "file": "src/auto-hash.js" // (required) path of output file
+    "file": "src/auto-hash.js" // (optional) path of output file
   },
   "len": 10, // (optional) the length of hash string to be used, default to full string.
   "rename": false, // (optional, false) rename the original file to originalFilename.hash.ext

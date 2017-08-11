@@ -56,6 +56,12 @@ autoHash({
 
 ### 输出样例
 
+- 当调用 `autoHash()` 时，会返回包含 hash 信息的对象
+```js
+{ testIndex: '5745abcc' }
+```
+
+- 当设置了 `output.file` 时，会输出到这个文件中（如果是调用 autoHash() 的方式，一样会返回 hash 对象）
 ```js
 module.exports = { testIndex: '5745abcc' };
 ```
@@ -78,7 +84,7 @@ module.exports = { testIndex: '5745abcc' };
     }
   ],
   "output": {
-    "file": "src/auto-hash.js" // 输出文件（必须）
+    "file": "src/auto-hash.js" // 输出文件（可选）
   },
   "len": 10, // hash 取值长度，默认全部（可选）
   "rename": false, // 重命名原文件，把 hash 附加到文件名中 originalFilename.hash.ext (可选，默认为 false)

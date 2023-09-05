@@ -41,7 +41,7 @@ const result = await autoHash({
 });
 // add 'c' or 'config' to set configuration file
 // or you can pass configuration directly
-await autoHash({
+autoHash({
   files: [{
     file: "test/index.js",
     name: "testIndex"

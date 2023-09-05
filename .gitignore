@@ -99,6 +99,7 @@ typings/
 
 # End of https://www.gitignore.io/api/node,macos,visualstudiocode
 
-test/*
-!test/index-2.css
-!test/index.js
+test/**/*
+!test/test.js
+!test/simple.css
+!test/itsy-bitsy-data-structures.js

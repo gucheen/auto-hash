@@ -1,10 +1,10 @@
 {
   "devDependencies": {
-    "coveralls": "^2.13.1",
-    "jest": "^20.0.4"
+    "coveralls": "^3.1.1",
+    "jest": "^29.6.4"
   },
   "dependencies": {
-    "minimist": "^1.2.0"
+    "minimist": "^1.2.8"
   },
   "name": "auto-hash",
   "description": "automatically create hash info for files",
@@ -15,7 +15,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "jest test/test.spec.js --coverage"
+    "test": "jest test/test.js --coverage"
   },
   "repository": {
     "type": "git",

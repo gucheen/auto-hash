@@ -18,8 +18,8 @@ interface AutoHashConfig {
     file: string;
   };
   len?: number;
-  rename?: boolean = false;
-  copy?: boolean = false;
+  rename?: boolean;
+  copy?: boolean;
 }
 
-export default function autoHash(argv: AutoHashConfig): HashesMap;
+export default function autoHash(argv: AutoHashConfig): Promise<HashesMap>;

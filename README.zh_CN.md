@@ -6,6 +6,10 @@
 
 自动计算文件 hash 值
 
+## Version 1.0
+
+auto-hash 现在提供一个异步的方法，异步的文件读取和写入在真实项目中会更有用。
+
 ## Features
 
 - 自动计算列表中文件的 MD5 值
@@ -16,10 +20,6 @@
 
 ```
 npm install auto-hash
-```
-或者
-```
-yarn add auto-hash
 ```
 
 ## Usage
@@ -35,7 +35,7 @@ autohash -c auto-hash.config.json
 
 ```js
 const autoHash = require('auto-hash');
-autoHash({
+const result = await autoHash({
   config: './auto-hash.config.json',
 });
 // 指定配置文件的参数名可以是 c 或者 config
@@ -51,13 +51,17 @@ autoHash({
   len: 8,
   rename: false,
   copy: true
-});
+})
+.then(anotherResult => {
+
+})
 ```
 
 ### 输出样例
 
-- 当调用 `autoHash()` 时，会返回包含 hash 信息的对象
+- 当调用 `autoHash()` 时，会异步返回包含 hash 信息的对象
 ```js
+// in Promise
 { testIndex: '5745abcc' }
 ```
 
@@ -96,7 +100,7 @@ module.exports = { testIndex: '5745abcc' };
 
 MIT License
 
-Copyright (c) 2017 Cheng Gu
+Copyright (c) 2023 Cheng Gu
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

@@ -7,6 +7,10 @@
 
 automatically create hash info for files
 
+## Version 1.0
+
+auto-hash export an asynchronous function now. Asynchronously file reading and writing should be more useful in real projects.
+
 ## Features
 
 - automatically generate MD5 for all files in list
@@ -17,10 +21,6 @@ automatically create hash info for files
 
 ```
 npm install auto-hash
-```
-or
-```
-yarn add auto-hash
 ```
 
 ## Usage
@@ -36,12 +36,12 @@ autohash -c auto-hash.config.json
 
 ```js
 const autoHash = require('auto-hash');
-autoHash({
+const result = await autoHash({
   config: './auto-hash.config.json',
 });
 // add 'c' or 'config' to set configuration file
 // or you can pass configuration directly
-autoHash({
+await autoHash({
   files: [{
     file: "test/index.js",
     name: "testIndex"
@@ -52,13 +52,17 @@ autoHash({
   len: 8,
   rename: false,
   copy: true
-});
+})
+.then(anotherResult => {
+  
+})
 ```
 
 ### output example
 
-- return as an object when call `autoHash()`
+- return as an object in Promise when call `autoHash()`
 ```js
+// in Promise
 { testIndex: '5745abcc' }
 ```
 
@@ -97,7 +101,7 @@ configuration file is in `.json`
 
 MIT License
 
-Copyright (c) 2017 Cheng Gu
+Copyright (c) 2023 Cheng Gu
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

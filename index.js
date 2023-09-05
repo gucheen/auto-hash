@@ -110,7 +110,7 @@ async function loadConfig(configPath) {
  * @param {AutoHashConfig} argv - AutoHash configuration
  * @return {Promise<Object.<string, string>>} - hashes
  */
-async function autoHash(argv) {
+async function autoHash(argv = {}) {
   /**
    * @type {AutoHashConfig}
    */
@@ -121,7 +121,7 @@ async function autoHash(argv) {
   } else if (Array.isArray(argv.files)) {
     config = argv
   } else {
-    loadConfig('./auto-hash.config.json')
+    config = await loadConfig('./auto-hash.config.json')
   }
   if (!(Array.isArray(config.files) && config.files.length)) {
     throw new Error('Missing file list')

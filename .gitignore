@@ -103,3 +103,5 @@ test/**/*
 !test/test.js
 !test/simple.css
 !test/itsy-bitsy-data-structures.js
+!test/the-super-tiny-compiler.js
+!test/config.json

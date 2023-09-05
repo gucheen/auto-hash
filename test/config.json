@@ -1,0 +1,13 @@
+{
+    "files": [
+        "test/itsy-bitsy-data-structures.js",
+        "test/simple.css",
+        "test/the-super-tiny-compiler.js"
+    ],
+    "output": {
+        "file": "test/test-hash-2.js"
+    },
+    "len": 8,
+    "rename": false,
+    "copy": true
+}

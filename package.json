@@ -15,7 +15,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "jest test/test.js --coverage"
+    "pretest": "git clean -xf test",
+    "test": "jest --coverage"
   },
   "repository": {
     "type": "git",

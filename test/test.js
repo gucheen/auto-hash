@@ -34,6 +34,8 @@ test('all functions and configurations', async () => {
     expect(result['simpledotcss']).toBe('f776f097')
     expect(result['the-super-tiny-compiler']).toBe('11fe4a36')
     expect(fs.existsSync('test/itsy-bitsy-data-structures.60e524eb.js')).toBe(true)
+    expect(fs.existsSync('test/simple.f776f097.css')).toBe(true)
+    expect(fs.existsSync('test/the-super-tiny-compiler.11fe4a36.js')).toBe(true)
     expect(fs.existsSync('test/test-hash.js')).toBe(true)
     const resultModule = require('./test-hash')
     expect(resultModule).toBeDefined()
@@ -62,10 +64,27 @@ test('use config file', async () => {
     expect(result['simple']).toBe('f776f097')
     expect(result['the-super-tiny-compiler']).toBe('11fe4a36')
     expect(fs.existsSync('test/itsy-bitsy-data-structures.60e524eb.js')).toBe(true)
+    expect(fs.existsSync('test/simple.f776f097.css')).toBe(true)
+    expect(fs.existsSync('test/the-super-tiny-compiler.11fe4a36.js')).toBe(true)
     expect(fs.existsSync('test/test-hash-2.js')).toBe(true)
     const resultModule = require('./test-hash-2')
     expect(resultModule).toBeDefined()
     expect(resultModule['itsy-bitsy-data-structures']).toBe('60e524eb')
     expect(resultModule['simple']).toBe('f776f097')
     expect(resultModule['the-super-tiny-compiler']).toBe('11fe4a36')
+})
+
+test('rename file', async () => {
+    await autoHash({
+        files: [
+            {
+                file: 'test/simple.css',
+                name: 'simpledotcss',
+            },
+        ],
+        len: 8,
+        rename: true,
+    })
+    expect(fs.existsSync('test/simple.css')).toBe(false)
+    expect(fs.existsSync('test/simple.f776f097.css')).toBe(true)
 })

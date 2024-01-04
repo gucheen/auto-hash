@@ -17,9 +17,10 @@ const workingDir = process.cwd()
  * @property {string} files[].file - file path
  * @property {string=} files[].name - key to use in hash object
  * @property {{file: string=}=} output - output file path of hashes
- * @property {number=} len - length of MD5 to be used
+ * @property {number=} len - length of hash to be used
  * @property {boolean=} rename - rename original file to originalFilename.hash.ext
  * @property {boolean=} copy - create a copy of original file in originalFilename.hash.ext
+ * @property {string=} algorithm - specific which hashing algorithm to use (make sure your nodejs and openssl support it)
  */
 
 /**
@@ -27,18 +28,19 @@ const workingDir = process.cwd()
  */
 
 /**
- * calculate MD5 of the file buffer.
+ * calculate hash of the file buffer.
  * @param {Object} params
  * @param {Buffer} params.buffer - file buffer
  * @param {number=} params.length - hash length
- * @return {string} MD5 hash
+ * @return {string} hash
  * @private
  */
-function fileMD5({
+function fileHashing({
   buffer,
   length,
+  algorithm,
 }) {
-  const fsHash = crypto.createHash('md5')
+  const fsHash = crypto.createHash(algorithm || 'SHA3-256')
   fsHash.update(buffer)
   let hash = fsHash.digest('hex')
   if (length) {
@@ -136,9 +138,10 @@ async function autoHash(argv = {}) {
       }
       filePath = path.resolve(workingDir, fileObj.file)
       const file = await fs.readFile(filePath)
-      fileHash = fileMD5({
+      fileHash = fileHashing({
         buffer: file,
         length: config.len,
+        algorithm: config.algorithm,
       })
       if (fileObj.name) {
         hashes[fileObj.name] = fileHash
@@ -149,9 +152,10 @@ async function autoHash(argv = {}) {
     } else if (typeof fileObj === 'string') {
       filePath = path.resolve(workingDir, fileObj)
       const file = await fs.readFile(filePath)
-      fileHash = fileMD5({
+      fileHash = fileHashing({
         buffer: file,
         length: config.len,
+        algorithm: config.algorithm,
       })
       const fileInfo = path.parse(filePath)
       hashes[fileInfo.name] = fileHash

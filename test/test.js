@@ -1,10 +1,11 @@
 const fs = require('fs')
-const {expect, test} = require('@jest/globals')
+const { expect, test } = require('@jest/globals')
 const autoHash = require('../index')
 const { execSync } = require('child_process')
 
 beforeEach(() => {
     execSync('git clean -xf test')
+    execSync('git restore test')
 })
 
 test('all functions and configurations', async () => {
@@ -87,4 +88,42 @@ test('rename file', async () => {
     })
     expect(fs.existsSync('test/simple.css')).toBe(false)
     expect(fs.existsSync('test/simple.e32024ea.css')).toBe(true)
+})
+
+test('specific algorithm in MD5', async () => {
+    const result = await autoHash({
+        files: [
+            {
+                file: 'test/itsy-bitsy-data-structures.js',
+                name: 'itsy-bitsy-data-structures',
+            },
+            {
+                file: 'test/simple.css',
+                name: 'simpledotcss',
+            },
+            {
+                file: 'test/the-super-tiny-compiler.js',
+            },
+        ],
+        output: {
+            file: 'test/test-hash-3.js',
+        },
+        len: 8,
+        rename: false,
+        copy: true,
+        algorithm: 'MD5',
+    })
+    expect(result).toBeDefined()
+    expect(result['itsy-bitsy-data-structures']).toBe('60e524eb')
+    expect(result['simpledotcss']).toBe('f776f097')
+    expect(result['the-super-tiny-compiler']).toBe('11fe4a36')
+    expect(fs.existsSync('test/itsy-bitsy-data-structures.60e524eb.js')).toBe(true)
+    expect(fs.existsSync('test/simple.f776f097.css')).toBe(true)
+    expect(fs.existsSync('test/the-super-tiny-compiler.11fe4a36.js')).toBe(true)
+    expect(fs.existsSync('test/test-hash-3.js')).toBe(true)
+    const resultModule = require('./test-hash-3')
+    expect(resultModule).toBeDefined()
+    expect(resultModule['itsy-bitsy-data-structures']).toBe('60e524eb')
+    expect(resultModule['simpledotcss']).toBe('f776f097')
+    expect(resultModule['the-super-tiny-compiler']).toBe('11fe4a36')
 })
